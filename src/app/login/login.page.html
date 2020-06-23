@@ -48,7 +48,11 @@
     <ion-row class="ion-align-items-center">
       <ion-col 
         class="ion-align-self-center ion-padding" size="12">
-        <div text-capitalize class="ion-text-center">|Iniciar sesión luego|</div>
+        <div text-capitalize class="ion-text-center login-in-later">
+          <a [routerLink]="['/tabs']" [queryParams]="{debug: true, 'login-in-later': 'true'}" >
+            |Iniciar sesión luego|
+          </a>
+        </div>
       </ion-col>
     </ion-row>
   </ion-grid>
