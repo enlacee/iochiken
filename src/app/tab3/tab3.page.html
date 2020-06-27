@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 3
+      Mi Cuenta
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,9 +9,26 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
+      <ion-title size="large">Mi Cuenta</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <!-- <app-explore-container name="Tab 3 page"></app-explore-container> -->
+  <div class="ion-padding">
+    <ion-item>
+      <ion-label position="stacked">Nombre Completo:</ion-label>
+      <ion-input type="text" value="" disabled></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Correo Electronico:</ion-label>
+      <ion-input type="email" value="" disabled></ion-input>
+    </ion-item>
+    <!--
+    <ion-item>
+      <ion-label position="stacked">Celular:</ion-label>
+      <ion-input type="tel" value=""></ion-input>
+    </ion-item> -->
+    <ion-button expand="block" fill="outline" color="success">CERRAR SESSIÓN</ion-button>
+  </div>
+
 </ion-content>

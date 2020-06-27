@@ -27,7 +27,6 @@ export class AuthService {
           // this.router.navigate(['dashboard']);
           console.log ('redirect to dashboard');
         })
-        console.log('result', result);
         console.log('result user', result.user);
       // this.SetUserData(result.user); //ACTUALIZA LA DATA PARA HACER ALGO X ESTE
     }).catch((error) => {
