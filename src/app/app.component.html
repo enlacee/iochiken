@@ -1,3 +1,34 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  
+  <ion-content padding>
+
+    <ion-button (click)="loginfb()">
+      login FB
+    </ion-button>
+
+    
+    <h1 *ngIf="authService.user | async">
+      Welcome {{ (authService.user | async)?.email }}!
+    </h1>
+
+    <div *ngIf="!(authService.user | async)">
+      <ion-input type="text" [(ngModel)]="email" placeholder="Enter email"></ion-input>
+      <ion-input type="password" [(ngModel)]="password" placeholder="Enter password"></ion-input>
+
+      <ion-button (click)="signup()" [disabled]="!email || !password">
+        Signup
+      </ion-button>
+
+      <ion-button (click)="login()" [disabled]="!email || !password">
+        Login
+      </ion-button>
+    </div>
+
+    <ion-button (click)="logout()" *ngIf="authService.user | async">
+      Logout
+    </ion-button>
+  </ion-content>
+
+
+  <!-- <ion-router-outlet></ion-router-outlet> -->
 </ion-app>
