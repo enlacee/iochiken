@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
+import { LocalStorageService } from '../local-storage.service'
+
+
 
 @Component({
   selector: 'app-tab3',
@@ -12,9 +16,15 @@ export class Tab3Page {
 
   constructor(
     private alertController: AlertController,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router,
+    private localStorage: LocalStorageService
   ) {
     this.userData = authService.getUserData();
+  }
+
+  ionViewWillEnter(){
+    this.userData = this.authService.getUserData();
   }
 
   async areYouSureLogOutAlert() {
@@ -45,7 +55,11 @@ export class Tab3Page {
     await alert.present();
   }
 
-  logout() {
-    this.authService.logout();
+  async logout() {
+    await this.authService.logout();
+    this.localStorage.set('user', null);
+    // redirect
+    this.router.navigate(['/login']);
+    console.log('redirect /login')
   }
 }

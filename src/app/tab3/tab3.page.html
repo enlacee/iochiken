@@ -18,11 +18,11 @@
   <div class="ion-padding">
     <ion-item>
       <ion-label position="stacked">Nombre Completo:</ion-label>
-      <ion-input type="text" value="{{userData.displayName}}" disabled></ion-input>
+      <ion-input type="text" value="{{ (userData == null) ? '' : userData.displayName }}" disabled></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Correo Electronico:</ion-label>
-      <ion-input type="email" value="{{userData.email}}" disabled></ion-input>
+      <ion-input type="email" value="{{ (userData == null) ? '' : userData.email }}" disabled></ion-input>
     </ion-item>
     <!--
     <ion-item>
