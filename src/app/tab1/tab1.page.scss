@@ -1,0 +1,17 @@
+
+ion-card-header{
+	position: absolute;
+	bottom: 0;
+	z-index: 1;
+	background-color: rgb(0,0,0,0.5); 
+	ion-card-title{
+		color: white;
+		font-weight: bold;
+
+	}
+}
+ion-card-content{
+	padding: 0;
+}
+
+

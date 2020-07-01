@@ -14,21 +14,22 @@
   </ion-header>
 
   <!-- <app-explore-container name="Tab 3 page"></app-explore-container> -->
+<ion-card>
   <div class="ion-padding">
     <ion-item>
       <ion-label position="stacked">Nombre Completo:</ion-label>
-      <ion-input type="text" value="" disabled></ion-input>
+      <ion-input type="text" value="{{userData.displayName}}" disabled></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Correo Electronico:</ion-label>
-      <ion-input type="email" value="" disabled></ion-input>
+      <ion-input type="email" value="{{userData.email}}" disabled></ion-input>
     </ion-item>
     <!--
     <ion-item>
       <ion-label position="stacked">Celular:</ion-label>
       <ion-input type="tel" value=""></ion-input>
     </ion-item> -->
-    <ion-button expand="block" fill="outline" color="success">CERRAR SESSIÓN</ion-button>
+    <ion-button expand="block" fill="outline" color="success" (click)="areYouSureLogOutAlert()">CERRAR SESSIÓN</ion-button>
   </div>
-
+</ion-card>
 </ion-content>

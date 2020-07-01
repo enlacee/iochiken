@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
+import { TheGuardGuard } from '../the-guard.guard';
 
 const routes: Routes = [
   {
@@ -34,7 +35,8 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('../login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('../login/login.module').then( m => m.LoginPageModule),
+    canActivate: [TheGuardGuard] //Acá indicamos cual es el guard y que tipo es
   }
 ];
 

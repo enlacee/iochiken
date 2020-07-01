@@ -43,7 +43,7 @@ export class AppComponent {
     });
   }
 
-  // adding
+/*
   signup() {
     this.authService.signup(this.email, this.password);
     this.email = this.password = '';
@@ -62,4 +62,5 @@ export class AppComponent {
   loginfb() {
     this.authService.loginfb();
   }
+*/
 }
