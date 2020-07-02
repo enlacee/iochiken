@@ -59,7 +59,8 @@ export class AuthService {
         console.log('result user', result.user);
       // this.SetUserData(result.user); //ACTUALIZA LA DATA PARA HACER ALGO X ESTE
     }).catch((error) => {
-      window.alert(error)
+      window.alert(error);
+      console.log('error FB', error);
     })
   }
 
@@ -68,6 +69,9 @@ export class AuthService {
     firebase.auth().useDeviceLanguage();
     var provider = new firebase.auth.FacebookAuthProvider();
     // provider.addScope('public_profile');
+    provider.setCustomParameters({
+      'display': 'popup'
+    });
 
     return this.AuthLogin(provider);
   }

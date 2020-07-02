@@ -14,30 +14,12 @@
   </ion-header>
 
   <!-- <app-explore-container name="Tienda page"></app-explore-container> -->
-  <ion-card>
+  <ion-card *ngFor="let item of dataJson.products" (click)="goToproductDetail( item.id )">
     <ion-card-header>
-      <ion-card-title>1 Pollo</ion-card-title>
+      <ion-card-title class="ion-text-capitalize">{{ item.name }}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-        <ion-img src="http://lorempixel.com/400/200/food/1"></ion-img>
-    </ion-card-content>
-  </ion-card>
-
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>1/2 Pollo</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-        <ion-img src="http://lorempixel.com/400/200/food/2"></ion-img>
-    </ion-card-content>
-  </ion-card>
-
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>1/4 Pollo</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-        <ion-img src="http://lorempixel.com/400/200/food/3"></ion-img>
+        <ion-img src="{{ item.image }}"></ion-img>
     </ion-card-content>
   </ion-card>
 

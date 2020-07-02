@@ -10,7 +10,15 @@ const routes: Routes = [
     children: [
       {
         path: 'tab1',
-        loadChildren: () => import('../tab1/tab1.module').then(m => m.Tab1PageModule)
+        loadChildren: () => import('../tab1/tab1.module').then(m => m.Tab1PageModule),
+      },
+      // {
+      //   path: 'tab1/detalle',
+      //   loadChildren: () => import('../tab1detalle/tab1detalle.module').then(m => m.Tab1detallePageModule),
+      // },
+      {
+        path: 'tab1/:id',
+        loadChildren: () => import('../tab1detalle/tab1detalle.module').then(m => m.Tab1detallePageModule),
       },
       {
         path: 'tab2',

@@ -1,0 +1,65 @@
+
+<!-- android Menu -->
+<ion-header [translucent]="true">
+  <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
+      </ion-buttons>
+      <ion-title slot="end" size="large">Detalle</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!-- ios Menu -->
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+<!--       <ion-buttons slot="start">
+        <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
+      </ion-buttons> -->
+      <ion-title slot="end" size="large">Detalle</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- <app-explore-container name="Tienda page"></app-explore-container> -->
+  <ion-card class="product">
+    <ion-card-header>
+      <ion-card-title>1 Pollo</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+        <ion-img src="http://lorempixel.com/400/200/food/1"></ion-img>
+    </ion-card-content>
+
+    <ion-card-content>
+      This is content, without any paragraph or header tags,
+      within an ion-card-content element.
+    </ion-card-content>
+
+    <ion-card-content>
+      <ion-label class="price">S/ 99.90</ion-label>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-icon name="chatbox-ellipses-outline" size="large"></ion-icon>
+      <!-- <ion-card-title >Comentario</ion-card-title> -->
+    </ion-card-header>
+
+    <ion-card-content>
+       <ion-textarea placeholder="Ingresa tu comentario"></ion-textarea>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- hr -->
+  <div class="ion-padding" style="height: 64px; background-color: transparent;"></div>
+
+  <!-- button FIXED -->
+  <div slot="fixed" style="bottom: 0; right: 0; left: 0;">
+    <section class="full-width">
+      <!-- <header>Full Width</header> -->
+      <ion-button expand="full" color="primary" size="large">ORDENAR</ion-button>
+    </section>
+  </div>
+
+
+</ion-content>
