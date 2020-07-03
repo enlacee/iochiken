@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LocalStorageService } from '../local-storage.service'
 
 @Component({
   selector: 'app-tab1detalle',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Tab1detallePage implements OnInit {
 
-  constructor() { }
+	dataJson: any;
 
-  ngOnInit() {
-  }
+	constructor(
+		private localStorage: LocalStorageService
+	) {
+		this.dataJson = this.localStorage.get('dataJson');
+	}
+
+	ngOnInit() {
+	}
+
+	ionViewWillEnter(){
+		// this.userData = this.authService.getUserData();
+	}
 
 }
