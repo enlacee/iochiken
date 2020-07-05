@@ -23,19 +23,18 @@
   <!-- <app-explore-container name="Tienda page"></app-explore-container> -->
   <ion-card class="product">
     <ion-card-header>
-      <ion-card-title>1 Pollo</ion-card-title>
+      <ion-card-title>{{ data.name }}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-        <ion-img src="http://lorempixel.com/400/200/food/1"></ion-img>
+        <ion-img src="{{ data.image }}"></ion-img>
     </ion-card-content>
 
     <ion-card-content>
-      This is content, without any paragraph or header tags,
-      within an ion-card-content element.
+      {{ data.description }}
     </ion-card-content>
 
     <ion-card-content>
-      <ion-label class="price">S/ 99.90</ion-label>
+      <ion-label class="price">{{ data.price }}</ion-label>
     </ion-card-content>
   </ion-card>
 

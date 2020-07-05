@@ -6,21 +6,21 @@
             "name":"1 pollo",
             "description":"1 Pollo a la brasa + papas fritas + guarnición + inka Kola sin azúcar de 1.5LT.",
             "image":"assets/img/products/pollo1.jpg",
-            "price":"55.00"
+            "price":"S/ 55.00"
          },
          {
             "id":2,
             "name":"1/2 pollo",
             "description":"1/2 Pollo a la brasa + ensalada regular + 2 botellas de inka Kola sin azúcar personales.",
             "image":"assets/img/products/pollo2.jpg",
-            "price":"30.00"
+            "price":"S/ 30.00"
          },
          {
             "id":3,
             "name":"1/4 pollo",
             "description":"1/4 Pollo a la brasa + ensalada + 1 botellas de inka Kola sin azúcar personal.",
             "image":"assets/img/products/pollo3.jpg",
-            "price":"17.00"
+            "price":"S/ 17.00"
          }
       ]
    }

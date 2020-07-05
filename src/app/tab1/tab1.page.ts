@@ -113,7 +113,6 @@ export class Tab1Page implements OnInit {
   }
 
   goToproductDetail(id){
-    console.log('id', id);
     this.router.navigate(['/tabs/tab1/' + id]);
   }
 }
