@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
-import { LocalStorageService } from '../local-storage.service'
+import { LocalStorageService } from '../local-storage.service';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -13,21 +15,34 @@ import { LocalStorageService } from '../local-storage.service'
 })
 export class Tab3Page {
   userData: Object;
+  idUser: any;
+  inputAddress: any;
+  inputPhone: any;
 
   constructor(
     private alertController: AlertController,
     private authService: AuthService,
     private router: Router,
-    private localStorage: LocalStorageService
+    private localStorage: LocalStorageService,
+    private db: AngularFireDatabase
   ) {
     this.userData = authService.getUserData();
+    this.idUser = this.userData["uid"]; // ID user
+
+    var itemRef = this.db.object('users/' + this.idUser);
+    itemRef.snapshotChanges().subscribe(action => {
+      var object = action.payload.val() || {};
+
+      this.inputAddress = object["address"] || '';
+      this.inputPhone = object["phone"] || '';
+    });
   }
 
   ionViewWillEnter(){
     this.userData = this.authService.getUserData();
   }
 
-  async areYouSureLogOutAlert() {
+  public async areYouSureLogOutAlert() {
   	let alert = await this.alertController.create({
   		cssClass: '',
   		header: '',
@@ -51,15 +66,29 @@ export class Tab3Page {
       ]
   	});
 
-    // return alert;
     await alert.present();
   }
 
-  async logout() {
+   /**
+   * logout firebase logOut
+   */
+  private async logout() {
     await this.authService.logout();
     this.localStorage.set('user', null);
     // redirect
     this.router.navigate(['/login']);
     console.log('redirect /login')
+  }
+
+  /**
+   * Save data of user by ID-FACEBOOK
+   */
+  public saveSettings() {
+    var dataToSave = {
+      address: this.inputAddress,
+      phone: this.inputPhone
+    };
+
+    this.db.list('users').set(this.idUser, dataToSave);
   }
 }
