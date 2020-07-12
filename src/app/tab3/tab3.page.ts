@@ -18,6 +18,7 @@ export class Tab3Page {
   idUser: any;
   inputAddress: any;
   inputPhone: any;
+  statusLogin: Boolean;
 
   constructor(
     private alertController: AlertController,
@@ -26,8 +27,9 @@ export class Tab3Page {
     private localStorage: LocalStorageService,
     private db: AngularFireDatabase
   ) {
+    this.statusLogin = this.authService.isLoggedIn();
     this.userData = authService.getUserData();
-    this.idUser = this.userData["uid"]; // ID user
+    this.idUser = (this.userData === null ) ? '' : this.userData["uid"];// ID user
 
     var itemRef = this.db.object('users/' + this.idUser);
     itemRef.snapshotChanges().subscribe(action => {
@@ -40,6 +42,12 @@ export class Tab3Page {
 
   ionViewWillEnter(){
     this.userData = this.authService.getUserData();
+
+    // clear
+    if (this.statusLogin === false) {
+      this.inputAddress = '';
+      this.inputPhone = '';
+    }
   }
 
   public async areYouSureLogOutAlert() {
@@ -89,6 +97,8 @@ export class Tab3Page {
       phone: this.inputPhone
     };
 
-    this.db.list('users').set(this.idUser, dataToSave);
+    if (this.statusLogin === true) {
+      this.db.list('users').set(this.idUser, dataToSave);
+    }
   }
 }
