@@ -10,12 +10,12 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './auth.service';
-//import { AngularFireDatabaseModule } from '@angular/fire/database'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { AgmCoreModule } from '@agm/core'; 
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,11 +25,9 @@ import { environment } from '../environments/environment';
     IonicModule.forRoot(),
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
-    FormsModule,
-    //AngularFireDatabaseModule
+    FormsModule
   ],
   providers: [
     StatusBar,
