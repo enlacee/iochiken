@@ -112,6 +112,9 @@ export class Tab1Page implements OnInit {
       });
   }
 
+  /** 
+   * Goto page detail
+   */
   goToproductDetail(id){
     this.router.navigate(['/tabs/tab1/' + id]);
   }

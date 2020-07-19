@@ -14,11 +14,11 @@
   </ion-header>
 
 
-  <div #mapElement class="map"></div>
+  <h1>direcciones</h1>
 
   <!-- fab placed to the bottom end -->
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button>
+    <ion-fab-button (click)="goToPageCurrentPosition()">
       <!-- <ion-icon name="arrow-forward-circle"></ion-icon> -->
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>

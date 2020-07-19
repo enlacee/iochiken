@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-declare var google;
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab4',
@@ -7,22 +7,15 @@ declare var google;
   styleUrls: ['./tab4.page.scss'],
 })
 
-export class Tab4Page implements OnInit, AfterViewInit {
+export class Tab4Page implements OnInit {
 
-	map;
-	@ViewChild('mapElement') mapElement;
-
-	constructor() {}
+	constructor(private router: Router) {}
 	ngOnInit() {}
 
-	ngAfterViewInit() {
-		this.map = new google.maps.Map(
-			this.mapElement.nativeElement,
-			{
-				center: { lat:  51.673858, lng: 7.815982 },
-				zoom: 8
-			}
-		);
+	/** 
+	 * Goto page detail
+	 */
+	public goToPageCurrentPosition(){
+		this.router.navigate(['/tabs/tab4/search']);
 	}
-
 }
