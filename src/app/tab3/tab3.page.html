@@ -24,11 +24,13 @@
       <ion-label position="stacked">Correo Electronico:</ion-label>
       <ion-input type="email" value="{{ (userData == null) ? '' : userData.email }}" disabled></ion-input>
     </ion-item>
-    <ion-button expand="block" fill="outline" color="success" (click)="areYouSureLogOutAlert()">CERRAR SESSIÓN</ion-button>
+    <ion-button expand="block" color="danger" (click)="areYouSureLogOutAlert()">CERRAR SESSIÓN</ion-button>
   </div>
 </ion-card>
 
-
+<ion-item>
+  <ion-label>Datos Adicionales</ion-label>
+</ion-item>
 <ion-card>
   <div class="ion-padding">
     <ion-item>

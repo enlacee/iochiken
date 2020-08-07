@@ -4,6 +4,7 @@ import { Observable,  } from 'rxjs';
 import * as firebase from 'firebase/app'
 import { Router } from "@angular/router";
 import { LocalStorageService } from './local-storage.service';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 
 
 @Injectable({
@@ -13,33 +14,29 @@ import { LocalStorageService } from './local-storage.service';
 export class AuthService {
 
   public user: any;
+  public dataStorageUser: any = {};
 
   constructor(
     private firebaseAuth:AngularFireAuth, // Inject Firebase auth service
     public ngZone: NgZone, // NgZone service to remove outside scope warning
     private localStorage: LocalStorageService,
     public router: Router,
+    private db: AngularFireDatabase,
   ) {
     this.user = firebaseAuth.authState;
-
-    /* Saving user data in localstorage when
-    logged in and setting up null when logged out */
     this.firebaseAuth.authState.subscribe(user => {
-      if (user) {
-        this.localStorage.set('user', user);
-        this.localStorage.get('user');
-      } else {
-        this.localStorage.set('user', null);
-        this.localStorage.get('user');
-      }
-    })
+      if (user) {/*console.log('user', user);*/}
+    });
+
+    // fill data user
+    if (this.getUserData() !== null) {
+      this.dataStorageUser = this.getUserData();
+    }
   }
 
   // Returns true when user is looged in and email is verified
-  // get isLoggedIn(): boolean {
   public isLoggedIn(): boolean {
-    const user = this.localStorage.get('user');
-    return (user !== null) ? true : false;
+    return (this.getUserData() !== null) ? true : false;
   }
 
   public getUserData(): any {
@@ -51,16 +48,20 @@ export class AuthService {
   AuthLogin(provider:any) {
     return this.firebaseAuth.signInWithPopup(provider)
     .then((result) => {
-      this.ngZone.run(() => {
-          // this.router.navigate(['dashboard']);
-          this.router.navigate(['/tabs/tab1']);
-          console.log ('redirect to dashboard');
-        })
-        console.log('result user', result.user);
-      // this.SetUserData(result.user); //ACTUALIZA LA DATA PARA HACER ALGO X ESTE
+      this.ngZone.run(() => { this.router.navigate(['/tabs/tab1']); console.log ('redirect to dashboard'); })
+
+      console.log('result user', result.user);
+      this.dataStorageUser['uid'] = result.user.uid;
+      this.dataStorageUser['displayName'] = result.user.displayName;
+      this.dataStorageUser['email'] = result.user.email;
+
+      this.dataStorageUserSave(); //this.localStorage.set('user', this.dataStorageUser);
+      this.getExtraDataToSignIn(result.user);
     }).catch((error) => {
       window.alert(error);
       console.log('error FB', error);
+
+      this.localStorage.set('user', null);
     })
   }
 
@@ -106,5 +107,25 @@ export class AuthService {
       .signOut();
   }
 
+  /**
+   * Obtener los datos extras del usuario y juantarlo todo  en el localstorage con el nombre 'user'
+  */
+  private getExtraDataToSignIn(user) {
 
+    if (user.uid) {
+      // Get data from firebase
+      var itemRef = this.db.object('users/' + user.uid);
+      itemRef.snapshotChanges().subscribe(action => {
+        var object = action.payload.val() || {};
+
+        this.dataStorageUser['address'] = object["address"] || '';
+        this.dataStorageUser['phone'] = object["phone"] || '';
+        this.localStorage.set('user', this.dataStorageUser);
+      });
+    }
+  }
+
+  public dataStorageUserSave() {
+    this.localStorage.set('user', this.dataStorageUser);
+  }
 }

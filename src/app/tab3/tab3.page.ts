@@ -6,8 +6,6 @@ import { LocalStorageService } from '../local-storage.service';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { FormsModule } from '@angular/forms';
 
-
-
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
@@ -25,23 +23,16 @@ export class Tab3Page {
     private authService: AuthService,
     private router: Router,
     private localStorage: LocalStorageService,
-    private db: AngularFireDatabase
+    private db: AngularFireDatabase,
   ) {
     this.statusLogin = this.authService.isLoggedIn();
-    this.userData = authService.getUserData();
-    this.idUser = (this.userData === null ) ? '' : this.userData["uid"];// ID user
-
-    var itemRef = this.db.object('users/' + this.idUser);
-    itemRef.snapshotChanges().subscribe(action => {
-      var object = action.payload.val() || {};
-
-      this.inputAddress = object["address"] || '';
-      this.inputPhone = object["phone"] || '';
-    });
+    this.idUser = authService.dataStorageUser["uid"] || ''// ID user
   }
 
   ionViewWillEnter(){
-    this.userData = this.authService.getUserData();
+    this.userData = this.authService.dataStorageUser;
+    this.inputAddress = this.authService.dataStorageUser["address"] || '';
+    this.inputPhone = this.authService.dataStorageUser["phone"] || '';
 
     // clear
     if (this.statusLogin === false) {
@@ -99,6 +90,11 @@ export class Tab3Page {
 
     if (this.statusLogin === true) {
       this.db.list('users').set(this.idUser, dataToSave);
+
+      // save on userData
+       this.authService.dataStorageUser['address'] = this.inputAddress;
+       this.authService.dataStorageUser['phone'] = this.inputPhone;
+       this.authService.dataStorageUserSave();
     }
   }
 }
