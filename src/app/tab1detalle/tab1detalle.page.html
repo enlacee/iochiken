@@ -41,11 +41,11 @@
   <ion-card>
     <ion-card-header>
       <ion-icon name="chatbox-ellipses-outline" size="large"></ion-icon>
-      <!-- <ion-card-title >Comentario</ion-card-title> -->
+      <ion-card-title >Comentario</ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
-       <ion-textarea placeholder="Ingresa tu comentario"></ion-textarea>
+       <ion-textarea placeholder="Ejemplo: Sin ají"></ion-textarea>
     </ion-card-content>
   </ion-card>
 
@@ -56,7 +56,7 @@
   <div slot="fixed" style="bottom: 0; right: 0; left: 0;">
     <section class="full-width">
       <!-- <header>Full Width</header> -->
-      <ion-button expand="full" color="primary" size="large">ORDENAR</ion-button>
+      <ion-button expand="full" color="primary" size="large"(click)="presentModal()">ORDENAR</ion-button>
     </section>
   </div>
 

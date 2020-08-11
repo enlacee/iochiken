@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from '../local-storage.service'
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { ModalController } from '@ionic/angular';
+import { ModalPage } from './modal.page';
+import { AuthService } from '../auth.service';
+
 @Component({
   selector: 'app-tab1detalle',
   templateUrl: './tab1detalle.page.html',
@@ -14,7 +18,9 @@ export class Tab1detallePage implements OnInit {
 	constructor(
 		private localStorage: LocalStorageService,
 		private route: ActivatedRoute,
-		private router: Router
+		private router: Router,
+		public modalController: ModalController,
+		private authService: AuthService,
 	) {
 		this.dataJson = this.localStorage.get('dataJson');
 	}
@@ -33,6 +39,20 @@ export class Tab1detallePage implements OnInit {
 
 	ionViewWillEnter(){
 		// this.userData = this.authService.getUserData();
+	}
+
+	async presentModal() {
+		const modal = await this.modalController.create({
+			component: ModalPage,
+			cssClass: 'my-custom-class',
+			componentProps: {
+				'firstName': 'Douglas',
+				'lastName': 'Adams',
+				'middleInitial': 'N'
+			}
+		});
+
+		return await modal.present();
 	}
 
 }
