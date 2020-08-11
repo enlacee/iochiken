@@ -6,7 +6,7 @@ import { ModalController } from '@ionic/angular';
 	// templateUrl: './modal-page.html',
 	template: `
 	<ion-header translucent>
-	<ion-toolbar>
+	<ion-toolbar color="primary">
 	  <ion-title>Datos de Entrega</ion-title>
 	  <ion-buttons slot="end">
 	    <ion-button (click)="dismiss()">Close</ion-button>
