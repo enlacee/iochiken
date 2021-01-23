@@ -1,5 +1,12 @@
 # iochiken
 
+Requirements
+	node v10
+
+Install ionic
+	npm install -g @ionic/cli
+
+Create server
 	ionic serve --external
 
 Create page

@@ -15,7 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-import { AgmCoreModule } from '@agm/core'; 
+// import { AgmCoreModule } from '@agm/core';  # USE FOR GOOGLE MAP LOCATIONS!
 
 @NgModule({
   declarations: [AppComponent],
